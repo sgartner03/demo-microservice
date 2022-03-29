@@ -1,13 +1,19 @@
 package my.groupId.health;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import org.jboss.logging.Logger;
+
 import my.groupId.logging.SwiftLogger;
 
 @Singleton
 public class State {
 
     private final String serviceName = "Service 1";
-    SwiftLogger Log = SwiftLogger.getLogger();
+
+    @Inject
+    Logger Log;
 
     boolean liveness = true;
     boolean readiness = true;
@@ -17,14 +23,12 @@ public class State {
     }
 
     public void toggleLiveness() {
-        Log.makeSpacing();
-        Log.decInfo("Toggling liveness");
+        Log.info("Toggling liveness");
         liveness = !liveness;
     }
 
     public void toggleReadiness() {
-        Log.makeSpacing();
-        Log.decInfo("Toggling readiness");
+        Log.info("Toggling readiness");
         readiness = !readiness;
     }
 }
