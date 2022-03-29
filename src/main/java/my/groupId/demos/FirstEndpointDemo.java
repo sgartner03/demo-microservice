@@ -6,7 +6,6 @@ import javax.ws.rs.Path;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.ResponseStatus;
 
-import javax.inject.Inject;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 

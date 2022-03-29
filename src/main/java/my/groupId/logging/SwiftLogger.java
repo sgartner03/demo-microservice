@@ -1,9 +1,6 @@
 package my.groupId.logging;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import org.jboss.logging.Logger;
 
