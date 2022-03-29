@@ -5,8 +5,6 @@ import javax.inject.Singleton;
 
 import org.jboss.logging.Logger;
 
-import my.groupId.logging.SwiftLogger;
-
 @Singleton
 public class State {
 
