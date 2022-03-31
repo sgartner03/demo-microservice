@@ -14,7 +14,8 @@ public class FirstEndpointDemo {
 
     private Logger LOGGER = Logger.getLogger(FirstEndpointDemo.class);
 
-    
+    // TODO remove me
+
     @ResponseStatus(200)
     @GET
     @Path("/res")

@@ -1,4 +1,4 @@
-package at.gepardec.loadtesting;
+package at.gepardec.rest;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 
 @RequestScoped
 @Path("/loadtesting")
-public class cpuload {
+public class CpuLoadResource {
     
     @GET
     @Path("/cpu/{cpus}/{seconds}")
