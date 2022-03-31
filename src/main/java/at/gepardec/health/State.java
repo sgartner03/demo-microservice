@@ -1,4 +1,4 @@
-package my.groupId.health;
+package at.gepardec.health;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

@@ -1,4 +1,4 @@
-package my.groupId.loadtesting;
+package at.gepardec.loadtesting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,21 @@ public class memoryload {
     
     @GET
     @Controller
-    @Path("/mem/{size_in_MB}")
-    public Response loadMemory(int size) throws InterruptedException {
+    @Path("/mem/{size}/{sec}")
+    public Response loadMemory(int size, int sec) throws InterruptedException {
+        byte[][] leech;
         try{
-            int leech = ' ' * 1024 * 1024 * size;
+
+            leech = new byte[960][1024*size];
+            
         } catch (OutOfMemoryError oom) {
+            leech = null;
+            System.gc();
             return Response.status(400).build();
         }
-        //Thread.sleep(5000);
+        Thread.sleep(1000 * sec);
+        leech = null;
+        System.gc();
         return Response.status(200).build();
     }
 
@@ -30,14 +37,10 @@ public class memoryload {
     @Path("/mem/test/{text}")
     public Response test(int text) throws InterruptedException {
         byte[][] leech;
-        try{
 
-            leech = new byte[1024 * text][1024];
-            
-        } catch (OutOfMemoryError oom) {
-            return Response.status(400).build();
-        }
-        Thread.sleep(5000);
+        leech = new byte[960][1024*text];
+        
+        Thread.sleep(4000);
         leech = null;
         System.gc();
         return Response.status(200).build();

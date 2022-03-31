@@ -1,4 +1,4 @@
-package my.groupId.demos;
+package at.gepardec.demos;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

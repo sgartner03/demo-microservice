@@ -1,4 +1,4 @@
-package my.groupId.logging;
+package at.gepardec.logging;
 
 import javax.enterprise.context.ApplicationScoped;
 

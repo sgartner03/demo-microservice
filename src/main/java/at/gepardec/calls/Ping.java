@@ -1,4 +1,4 @@
-package my.groupId.calls;
+package at.gepardec.calls;
 
 public class Ping {
     

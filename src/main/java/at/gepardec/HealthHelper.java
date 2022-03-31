@@ -1,4 +1,4 @@
-package my.groupId;
+package at.gepardec;
 
 import java.util.List;
 import java.util.stream.Collectors;

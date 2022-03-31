@@ -1,4 +1,4 @@
-package my.groupId;
+package at.gepardec;
 
 import javax.enterprise.context.RequestScoped;
 import javax.mvc.Controller;

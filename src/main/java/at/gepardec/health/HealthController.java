@@ -1,4 +1,4 @@
-package my.groupId.health;
+package at.gepardec.health;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -11,8 +11,8 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jboss.logging.Logger;
 
-import my.groupId.HealthHelper;
-import my.groupId.Utility;
+import at.gepardec.HealthHelper;
+import at.gepardec.Utility;
 
 @RequestScoped
 @Path("/service1/health")

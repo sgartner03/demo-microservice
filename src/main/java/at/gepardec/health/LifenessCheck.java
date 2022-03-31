@@ -1,4 +1,4 @@
-package my.groupId.health;
+package at.gepardec.health;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
