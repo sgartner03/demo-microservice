@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-demo
+  labels:
+    app.kubernetes.io/name: microservice-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: microservice-demo
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: microservice-demo
+    spec:
+      containers:
+        - name: microservice-demo
+          image: 'ghcr.io/jabberwocky1858/microservice-demo:0.0.1'

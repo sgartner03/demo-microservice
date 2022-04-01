@@ -15,7 +15,8 @@ public class MemoryConsumptionService {
         Log.infof("loadMemory(%d, %d)", size, sec);
         byte[][] leech;
         try {
-            leech = new byte[960][1024 * size];
+            leech = new byte[960][512 * size];
+            leech = new byte[960][512 * size];
         } catch (OutOfMemoryError oom) {
             Log.error(oom);
             leech = null;

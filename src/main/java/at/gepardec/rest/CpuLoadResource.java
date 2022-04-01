@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 public class CpuLoadResource {
     
     @GET
-    @Path("/cpu/{cpus}/{seconds}")
-    public Response loadCPU(int cpus, int seconds) {
+    @Path("/cpu/{cpus}/{sec}")
+    public Response loadCpuRequest(int cpus, int sec) {
 
         int maxCpus = Runtime.getRuntime().availableProcessors();
         System.out.println("Available cpu-cores: " + maxCpus);
@@ -25,7 +25,7 @@ public class CpuLoadResource {
             return Response.status(400, "Not enough cpu-cores available: " + cpus + " > " + maxCpus).build();
         }
 
-        System.out.println("Running load on " + cpus + " core(s) for " + seconds + " second(s)");
+        System.out.println("Running load on " + cpus + " core(s) for " + sec + " second(s)");
         
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
             cpus,
@@ -44,7 +44,7 @@ public class CpuLoadResource {
                     strainCore();
                 });
             }
-            threadPool.awaitTermination(seconds + 1, TimeUnit.SECONDS);
+            threadPool.awaitTermination(sec + 1, TimeUnit.SECONDS);
             threadPool.shutdownNow();
         } catch (Exception e) {
             e.printStackTrace();

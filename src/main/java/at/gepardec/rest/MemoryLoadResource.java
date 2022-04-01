@@ -19,19 +19,19 @@ public class MemoryLoadResource {
     Logger Log;
 
     @Inject
-    MemoryConsumptionService mmcService;
+    MemoryConsumptionService mcsService;
 
     @GET
     @Path("/mem/{size}/{sec}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response loadMemory(int size, int sec) {
+    @Produces("test/html")
+    public Response loadMemoryRequest(int size, int sec) {
         Log.infof("loadMemory(%d, %d)", size, sec);
         try {
-            mmcService.loadMemory(size, sec);
+            mcsService.loadMemory(size, sec);
         } catch (InterruptedException | OutOfMemoryError e) {
-            return Response.status(500).build();
+            return Response.status(500).entity("<strong style=\"color: red;\">Some text</strong>").build();
         }
-        return Response.status(200).build();
+        return Response.status(200).entity("Loaded memory successfully!").build();
     }
 
 
