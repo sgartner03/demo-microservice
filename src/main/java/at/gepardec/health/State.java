@@ -7,7 +7,7 @@ import org.jboss.logging.Logger;
 
 @Singleton
 public class State {
-
+//
     private final String serviceName = "Service 1";
 
     @Inject
