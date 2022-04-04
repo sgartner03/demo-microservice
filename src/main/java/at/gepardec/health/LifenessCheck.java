@@ -8,7 +8,6 @@ import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.Liveness;
 import org.jboss.logging.Logger;
 
-
 @Liveness
 @ApplicationScoped
 public class LifenessCheck implements HealthCheck {

@@ -8,7 +8,6 @@ import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.Readiness;
 import org.jboss.logging.Logger;
 
-
 @Readiness
 @ApplicationScoped
 public class ReadinessCheck implements HealthCheck {
