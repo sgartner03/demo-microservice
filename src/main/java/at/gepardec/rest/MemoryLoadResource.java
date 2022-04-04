@@ -23,13 +23,13 @@ public class MemoryLoadResource {
 
     @GET
     @Path("/mem/{size}/{sec}")
-    @Produces("test/html")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response loadMemoryRequest(int size, int sec) {
         Log.infof("loadMemory(%d, %d)", size, sec);
         try {
-            mcsService.loadMemory(size, sec);
+            mcsService.test(size, sec);
         } catch (InterruptedException | OutOfMemoryError e) {
-            return Response.status(500).entity("<strong style=\"color: red;\">Some text</strong>").build();
+            return Response.status(500).entity("Out of memory or service was interrupted...").build();
         }
         return Response.status(200).entity("Loaded memory successfully!").build();
     }

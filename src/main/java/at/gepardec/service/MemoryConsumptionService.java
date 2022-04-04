@@ -28,4 +28,20 @@ public class MemoryConsumptionService {
         System.gc();
     }
 
+    public void test(int size, int sec) throws InterruptedException, OutOfMemoryError {
+        Log.infof("loadMemory(%d, %d)", size, sec);
+        byte[][] leech;
+        try {
+            leech = new byte[960][1024 * size];
+        } catch (OutOfMemoryError oom) {
+            Log.error(oom);
+            leech = null;
+            System.gc();
+            throw oom;
+        }
+        Thread.sleep(1000 * sec);
+        leech = null;
+        System.gc();
+    }
+
 }

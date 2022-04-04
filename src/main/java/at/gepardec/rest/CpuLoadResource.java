@@ -1,78 +1,35 @@
 package at.gepardec.rest;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import at.gepardec.service.CpuLoadService;
+import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @RequestScoped
 @Path("/loadtesting")
 public class CpuLoadResource {
-    
+
+    @Inject
+    Logger Log;
+
+    @Inject
+    CpuLoadService clsService;
+
     @GET
     @Path("/cpu/{cpus}/{sec}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response loadCpuRequest(int cpus, int sec) {
 
-        int maxCpus = Runtime.getRuntime().availableProcessors();
-        System.out.println("Available cpu-cores: " + maxCpus);
-
-        if(cpus > maxCpus) {
-            return Response.status(400, "Not enough cpu-cores available: " + cpus + " > " + maxCpus).build();
-        }
-
-        System.out.println("Running load on " + cpus + " core(s) for " + sec + " second(s)");
-        
-        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
-            cpus,
-            cpus,
-            1,
-            TimeUnit.SECONDS,
-            new LinkedBlockingDeque<>(1),
-            Executors.defaultThreadFactory(),
-            new ThreadPoolExecutor.AbortPolicy()
-        );
-        
-        try {
-            
-            for (int i = 0; i < cpus; i++) {
-                threadPool.execute( () -> {
-                    strainCore();
-                });
-            }
-            threadPool.awaitTermination(sec + 1, TimeUnit.SECONDS);
-            threadPool.shutdownNow();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            threadPool.shutdown();
-        }
-
-        return Response.status(200).build();
+        return clsService.loadCpu(cpus, sec)?
+                Response.status(200).build():
+                Response.status(400).entity("Not enough cpu-cores available: " + cpus + " > " + Runtime.getRuntime().availableProcessors()).build();
     }
 
-    private void strainCore() {
-        try {
-            int x = 12;
-            for( int k = 0; k < 1024 * 1024; k++) {
-                for( int j = 0; j < 1024 * 1024; j++) {
-                    if(Thread.interrupted()) {
-                        throw new InterruptedException();
-                    }
-                    for( int i = 0; i < 1024; i++) {
-                        x *= x;
-                    }
-                    
-                }
-                
-            }
-        } catch( InterruptedException e) {
-            
-        }
-        
-    }
+
 }
