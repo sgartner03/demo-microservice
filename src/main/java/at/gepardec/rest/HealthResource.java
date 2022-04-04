@@ -18,9 +18,6 @@ public class HealthResource {
     @Inject
     Logger Log;
 
-    @Inject
-    State state;
-
     @GET
     @Path("/health")
     public Response getHealth() {
