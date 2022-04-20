@@ -2,6 +2,7 @@ package at.gepardec.rest;
 
 import at.gepardec.service.MiddlemanService;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -13,11 +14,16 @@ import javax.ws.rs.core.MediaType;
 public class EntrypointResource {
 
     @Inject
+    Logger Log;
+
+    @Inject
     @RestClient
     MiddlemanService middlemanService;
 
     @GET
+    @Path("/service")
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/healthService")
-    public String callHealthService() { return "Calling HealthCheck: " + middlemanService.getHealthStatus(); }
+    public String callNextService() {
+        Log.info("Service 1 requesting call of next Service...");
+        return middlemanService.getNextResource(); }
 }

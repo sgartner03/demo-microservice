@@ -21,10 +21,6 @@ public class ReadinessCheck implements HealthCheck {
     @Override
     public HealthCheckResponse call() {
         Log.info("Calling Readiness-Check for " + state.getServiceName());
-        while(!state.readiness) {
-            Log.error("Service not ready yet. Trying again...");
-            state.toggleReadiness();
-        }
         return HealthCheckResponse.named(state.getServiceName()).status(state.readiness).build();
     }
 }
