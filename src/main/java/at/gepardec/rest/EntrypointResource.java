@@ -16,6 +16,8 @@ public class EntrypointResource {
     @Inject
     Logger Log;
 
+    int count = 0;
+
     @Inject
     @RestClient
     MiddlemanService middlemanService;
@@ -24,6 +26,6 @@ public class EntrypointResource {
     @Path("/service")
     @Produces(MediaType.TEXT_PLAIN)
     public String callNextService() {
-        Log.info("Service 1 requesting call of next Service...");
+        Log.info("Service 1 requesting call of next Service #" + ++count);
         return middlemanService.getNextResource(); }
 }
