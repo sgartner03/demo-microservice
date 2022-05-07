@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 
 @RequestScoped
 @Path("/logging")
-public class LogGeneratorResource {
+public class LogErrorGeneratorResource {
 
     @Inject
     Logger Log;

@@ -24,6 +24,7 @@ public class EntrypointResource {
     int idletime;
 
     int count = 0;
+    int stop;
 
     @Inject
     RandomCallService randomCallService;
@@ -31,21 +32,27 @@ public class EntrypointResource {
     @GET
     @Path("/service")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response callNextService(@QueryParam("ttl") int ttl)
+    public void callNextService(@QueryParam("ttl") int ttl)
             throws InterruptedException {
 
         Thread.sleep(idletime);
         Log.info("Service 1 requesting call of next Service #" + ++count);
-        Log.info("ttl_service2: " + ttl);
-        return callRandomService(ttl);
+        callRandomService(ttl);
     }
 
-    public Response callRandomService(int ttl) {
+    public void callRandomService(int ttl) {
         if (ttl > 0) {
             Log.info("Calling Random service #" + ++count);
-            return randomCallService.callRandomService(--ttl);
+            Log.info("ttl: " + (ttl-1));
+            randomCallService.callRandomService(--ttl);
+
+            Log.info("Calling Random service #####" + ++count);
+            Log.info("ttl2: " + (ttl-1));
+            randomCallService.callRandomService(--ttl);
+        } else {
+            Log.info("Stopping RandomCallService...");
+            //return Response.status(200).entity("Random Call-Service stopped...").build();
         }
-        Log.info("Stopping RandomCallService...");
-        return Response.status(200).entity("Random Call-Service stopped...").build();
+
     }
 }
