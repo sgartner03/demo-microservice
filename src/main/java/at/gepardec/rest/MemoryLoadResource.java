@@ -27,9 +27,11 @@ public class MemoryLoadResource {
     public Response loadMemoryRequest(int size, int sec) {
         Log.infof("loadMemory(%d, %d)", size, sec);
         try {
-            mcsService.test(size, sec);
-        } catch (InterruptedException | OutOfMemoryError e) {
-            return Response.status(500).entity("Out of memory or service was interrupted...").build();
+            if(!mcsService.loadMemory(size, sec)) {
+                return Response.status(500).entity("Out of memory...").build();
+            }
+        } catch (InterruptedException e) {
+            return Response.status(500).entity("Service was interrupted...").build();
         }
         return Response.status(200).entity("Loaded memory successfully!").build();
     }

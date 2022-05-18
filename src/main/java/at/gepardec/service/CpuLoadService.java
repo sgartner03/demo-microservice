@@ -23,6 +23,7 @@ public class CpuLoadService {
         Log.info("Available cpu-cores: " + maxCpus);
 
         if(cpus > maxCpus) {
+            Log.info("Aborting loading of CPU because of insufficient core-availability: " + cpus + " <= " + maxCpus);
             return false;
         }
         Log.info("Running load on " + cpus + " core(s) for " + sec + " second(s)");

@@ -11,37 +11,21 @@ public class MemoryConsumptionService {
     @Inject
     Logger Log;
 
-    public void loadMemory(int size, int sec) throws InterruptedException, OutOfMemoryError {
-        Log.infof("loadMemory(%d, %d)", size, sec);
-        byte[][] leech;
-        try {
-            leech = new byte[960][512 * size];
-            leech = new byte[960][512 * size];
-        } catch (OutOfMemoryError oom) {
-            Log.error(oom);
-            leech = null;
-            System.gc();
-            throw oom;
-        }
-        Thread.sleep(1000 * sec);
-        leech = null;
-        System.gc();
-    }
-
-    public void test(int size, int sec) throws InterruptedException, OutOfMemoryError {
+    public boolean loadMemory(int size, int sec) throws InterruptedException, OutOfMemoryError {
         Log.infof("loadMemory(%d, %d)", size, sec);
         byte[][] leech;
         try {
             leech = new byte[960][1024 * size];
-        } catch (OutOfMemoryError oom) {
+            Thread.sleep(1000 * sec);
+        } catch (OutOfMemoryError | InterruptedException oom) {
             Log.error(oom);
             leech = null;
             System.gc();
-            throw oom;
+            return false;
         }
-        Thread.sleep(1000 * sec);
         leech = null;
         System.gc();
+        return true;
     }
 
 }
