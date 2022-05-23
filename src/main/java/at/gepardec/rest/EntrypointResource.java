@@ -25,7 +25,6 @@ public class EntrypointResource {
     int idletime;
 
     int count = 0;
-    int stop;
 
     @Inject
     RandomCallService randomCallService;
@@ -53,7 +52,6 @@ public class EntrypointResource {
             randomCallService.callRandomService(--ttl, transactionID);
         } else {
             Log.info("Stopping RandomCallService...");
-            //return Response.status(200).entity("Random Call-Service stopped...").build();
         }
 
     }
