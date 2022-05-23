@@ -3,6 +3,7 @@ package at.gepardec.service;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import java.util.*;
 
@@ -45,6 +46,7 @@ public class ServiceCollector {
     public List<String> getServiceURLs() {
         return new ArrayList<>(serviceURLMap.values());
     }
+
 
     public void logServiceURLs() {
         Log.info("ServiceURLs: ");

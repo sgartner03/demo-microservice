@@ -1,6 +1,7 @@
 package at.gepardec.rest;
 
 import at.gepardec.service.RandomCallService;
+import at.gepardec.service.ServiceCollector;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 
@@ -24,10 +25,16 @@ public class EntrypointResource {
     @ConfigProperty(name = "microservices.idletime")
     int idletime;
 
+    @ConfigProperty(name = "microservices.seed")
+    Long seed;
+
+
     int count = 0;
 
     @Inject
-    RandomCallService randomCallService;
+    ServiceCollector serviceCollector;
+
+    RandomCallService randomCallService = new RandomCallService(serviceCollector.getServiceURLs(), seed);
 
     @GET
     @Path("/service")
