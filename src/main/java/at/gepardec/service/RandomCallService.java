@@ -3,8 +3,6 @@ package at.gepardec.service;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 import org.jboss.logging.Logger;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
 import java.net.URI;
 import java.util.List;
 import java.util.Random;
