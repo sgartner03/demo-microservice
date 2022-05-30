@@ -5,25 +5,21 @@ import org.jboss.logging.Logger;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 
-public class RandomCallService {
+public class OrderedCallService {
 
     Logger Log = Logger.getLogger(RandomCallService.class);
 
-    Random random;
-
     List<String> serviceCollection;
 
-    public RandomCallService(List<String> serviceCollection, Random random) {
+    public OrderedCallService(List<String> serviceCollection) {
         this.serviceCollection = serviceCollection;
-        this.random = random;
     }
 
-    public void callRandomService(int ttl, UUID transactionID) {
-        getService(getRandomUrl()).getNextResource(ttl, transactionID);
+    public void callRandomServiceBySequence(String orderSequence, UUID transactionID) {
+        getService(getUrl()).getNextResourceBySequence(orderSequence, transactionID);
     }
 
     public MiddlemanService getService(String url) {
@@ -34,8 +30,8 @@ public class RandomCallService {
                 .build(MiddlemanService.class);
     }
 
-    public String getRandomUrl() {
-        return serviceCollection.get(random.nextInt(serviceCollection.size()));
+    public String getUrl() {
+        return serviceCollection.get(0);
     }
 
 }
