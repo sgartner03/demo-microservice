@@ -18,7 +18,4 @@ class LogErrorGeneratorResourceTest {
                 .body(is("Logged error message"));
     }
 
-    @Test
-    void throwExceptionTest() {
-    }
 }

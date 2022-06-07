@@ -24,9 +24,4 @@ class RandomCallServiceTest {
 
     }
 
-/*    @Test
-    void getRandomUrlTest() {
-        assertNotNull(randomCallService.getRandomUrl());
-    }*/
-
 }
