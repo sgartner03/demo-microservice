@@ -38,9 +38,7 @@ public class CpuLoadService {
         );
         try {
             for (int i = 0; i < cpus; i++) {
-                threadPool.execute(() -> {
-                    strainCore();
-                });
+                threadPool.execute(this::strainCore);
             }
             threadPool.awaitTermination(sec + 1, TimeUnit.SECONDS);
             threadPool.shutdownNow();
@@ -65,9 +63,7 @@ public class CpuLoadService {
                     }
                 }
             }
-        } catch (InterruptedException e) {
-
-        }
+        } catch (InterruptedException e) {/* intentionally left empty*/}
     }
 
 }

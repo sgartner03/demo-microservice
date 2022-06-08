@@ -26,6 +26,7 @@ public class MemoryLoadResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response loadMemoryRequest(int size, int sec) {
         Log.infof("loadMemory(%d, %d)", size, sec);
+        Log.info("FreeMemory: " + Runtime.getRuntime().freeMemory());
         try {
             if (!mcsService.loadMemory(size, sec)) {
                 return Response.status(500).entity("Out of memory...").build();
