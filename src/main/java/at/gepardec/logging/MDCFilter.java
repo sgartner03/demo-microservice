@@ -1,4 +1,4 @@
-package at.liwest.quarkus.logging.filter;
+package at.gepardec.logging;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
@@ -20,9 +20,9 @@ public class MDCFilter implements ContainerRequestFilter, ContainerResponseFilte
 
     protected static final String HEADER_BUSINESS_ID = "X-BUSINESS-ID";
 
-    protected static final String LOG_ORDER_UUID = "liwest.order.uuid";
+    protected static final String LOG_ORDER_UUID = "order.uuid";
 
-    protected static final String LOG_BUSINESS_ID = "liwest.business.id";
+    protected static final String LOG_BUSINESS_ID = "business.id";
 
     @Override
     public void filter(final ContainerRequestContext requestContext) throws IOException {
