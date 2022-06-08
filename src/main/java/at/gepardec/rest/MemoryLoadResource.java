@@ -27,6 +27,8 @@ public class MemoryLoadResource {
     public Response loadMemoryRequest(int size, int sec) {
         Log.infof("loadMemory(%d, %d)", size, sec);
         Log.info("FreeMemory: " + Runtime.getRuntime().freeMemory());
+        Log.info("MaxMemory: " + Runtime.getRuntime().maxMemory());
+        Log.info("TotalMemory: " + Runtime.getRuntime().totalMemory());
         try {
             if (!mcsService.loadMemory(size, sec)) {
                 return Response.status(500).entity("Out of memory...").build();
