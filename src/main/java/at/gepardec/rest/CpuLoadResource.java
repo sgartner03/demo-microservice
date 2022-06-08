@@ -26,8 +26,8 @@ public class CpuLoadResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response loadCpuRequest(int cpus, int sec) {
 
-        return clsService.loadCpu(cpus, sec)?
-                Response.status(200).build():
+        return clsService.loadCpu(cpus, sec) ?
+                Response.status(200).build() :
                 Response.status(400).entity("Not enough cpu-cores available: " + cpus + " > " + Runtime.getRuntime().availableProcessors()).build();
     }
 

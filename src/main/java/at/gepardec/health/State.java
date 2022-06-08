@@ -1,9 +1,9 @@
 package at.gepardec.health;
 
+import org.jboss.logging.Logger;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import org.jboss.logging.Logger;
 
 @Singleton
 public class State {

@@ -23,5 +23,5 @@ public interface MiddlemanService {
     @Path("/call/serviceBySequence")
     @Produces(MediaType.TEXT_PLAIN)
     Response getNextResourceBySequence(@QueryParam("sequence") String sequence,
-                             @QueryParam("transactionID") UUID transactionID);
+                                       @QueryParam("transactionID") UUID transactionID);
 }
