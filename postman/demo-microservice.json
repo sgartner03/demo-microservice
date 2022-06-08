@@ -44,12 +44,12 @@
 				"header": [
 					{
 						"key": "X-ORDER-UUID",
-						"value": "123",
+						"value": "{{x-order-uuid}}",
 						"type": "text"
 					},
 					{
 						"key": "X-BUSINESS-ID",
-						"value": "456",
+						"value": "{{x-business-id}}",
 						"type": "text"
 					}
 				],
