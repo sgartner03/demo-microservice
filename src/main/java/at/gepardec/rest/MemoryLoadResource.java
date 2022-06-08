@@ -29,6 +29,8 @@ public class MemoryLoadResource {
         Log.info("FreeMemory: " + Runtime.getRuntime().freeMemory());
         Log.info("MaxMemory: " + Runtime.getRuntime().maxMemory());
         Log.info("TotalMemory: " + Runtime.getRuntime().totalMemory());
+        long freeMemory = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory();
+        Log.info("Total free memory: " + freeMemory);
         try {
             if (!mcsService.loadMemory(size, sec)) {
                 return Response.status(500).entity("Out of memory...").build();
