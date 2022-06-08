@@ -15,13 +15,4 @@ class RandomCallServiceTest {
 
 
 
-    @Test
-    void getServiceForUnknownHostThrowsProcessingException() {
-
-        //RandomCallService randomCallService = new RandomCallService(List.of("http://www.bielefeld.test"), 1858L); //Todo: anpassen an neue impl
-        //then
-        //assertThrows(ProcessingException.class, () -> randomCallService.getService(randomCallService.getRandomUrl()).getNextResource(0, UUID.randomUUID()));
-
-    }
-
 }

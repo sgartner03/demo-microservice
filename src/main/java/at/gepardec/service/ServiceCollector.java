@@ -11,9 +11,6 @@ import java.util.List;
 @ApplicationScoped
 public class ServiceCollector {
 
-    @Inject
-    Logger Log;
-
     @ConfigProperty(name = "microservices.urls")
     List<String> serviceUrls;
 
