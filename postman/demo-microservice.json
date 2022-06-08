@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "f63c6263-867d-4c2d-92cd-f58a7b28e368",
+		"name": "basic requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10757470"
+	},
+	"item": [
+		{
+			"name": "Throw Exception",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-ORDER-UUID",
+						"value": "{{x-order-uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-BUSINESS-ID",
+						"value": "{{x-business-id}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/logging/exception",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"logging",
+						"exception"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log Error",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-ORDER-UUID",
+						"value": "123",
+						"type": "text"
+					},
+					{
+						"key": "X-BUSINESS-ID",
+						"value": "456",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}:{{port}}//logging/error",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"",
+						"logging",
+						"error"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost"
+		}
+	]
+}
