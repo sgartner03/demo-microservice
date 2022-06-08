@@ -1,12 +1,8 @@
 package at.gepardec.service;
 
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 import org.jboss.logging.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import java.net.URI;
 import java.util.List;
 import java.util.Random;
@@ -19,12 +15,11 @@ public class OrderedCallService {
     String orderSequence;
 
     List<String> serviceCollection;
-
-    @ConfigProperty(name = "microservices.idletime")
     int idletime;
 
-    public OrderedCallService(List<String> serviceCollection) {
+    public OrderedCallService(List<String> serviceCollection, int idletime) {
         this.serviceCollection = serviceCollection;
+        this.idletime = idletime;
     }
 
     public void callServiceBySequence(String orderSequence, UUID transactionID) {
