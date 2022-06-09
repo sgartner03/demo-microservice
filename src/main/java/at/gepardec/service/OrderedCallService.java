@@ -3,6 +3,7 @@ package at.gepardec.service;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 import org.jboss.logging.Logger;
 
+import javax.ws.rs.WebApplicationException;
 import java.net.URI;
 import java.util.List;
 import java.util.Random;
@@ -78,7 +79,7 @@ public class OrderedCallService {
         Random random = new Random();
         if (probability != 0 && random.nextInt(probability) == 0) {
             Log.error("An error occured while trying to call next service");
-            return;     // welcher error solls sein? und soll request dann weitergeführt werden?
+            throw new WebApplicationException("An error occured while calling service");
         }
     }
 
