@@ -27,7 +27,7 @@ public class ReadinessCheck implements HealthCheck {
         double cpuLoad = osBean.getProcessCpuLoad();
         Log.info("Calling Readiness-Check for " + state.getServiceName());
         Log.info("CPu-Usage: " + cpuLoad);
-        boolean ready = cpuLoad < 0.5;
+        boolean ready = cpuLoad < 0.8;
         return HealthCheckResponse.named(state.getServiceName()).status(ready).build();
     }
 }
