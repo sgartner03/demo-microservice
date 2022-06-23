@@ -25,7 +25,7 @@ public class ReadinessCheck implements HealthCheck {
     @Override
     public HealthCheckResponse call() {
         double cpuLoad = osBean.getProcessCpuLoad();
-        Log.info("ReadinessCheck - CpuUsage: " + cpuLoad);
+        Log.info("ReadinessCheck - CpuUsage: " + String.format("%.2f", cpuLoad));
         boolean ready = cpuLoad < 0.8;
         return HealthCheckResponse.named(state.getServiceName()).status(ready).build();
     }

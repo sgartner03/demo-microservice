@@ -20,7 +20,7 @@ public class LivenessCheck implements HealthCheck {
 
     @Override
     public HealthCheckResponse call() {
-        Log.info("Calling Liveness-Check for " + state.getServiceName());
+        Log.info("LivenessCheck - ");
         return HealthCheckResponse.named(state.getServiceName()).status(state.liveness).build();
     }
 }
