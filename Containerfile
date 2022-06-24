@@ -9,4 +9,4 @@ COPY target/*-runner.jar /work/application.jar
 
 EXPOSE 8080
 
-CMD ["java","-jar","application.jar","-Dquarkus.http.host=0.0.0.0","$app.xmx"]
+CMD ["java","-jar","application.jar","-Dquarkus.http.host=0.0.0.0","-Xmx128m"]
