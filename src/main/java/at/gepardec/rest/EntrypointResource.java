@@ -50,7 +50,7 @@ public class EntrypointResource {
                 Log.info("Stopping OrderedCallService...\n\n");
                 return;
         }
-        Log.info("Calling next Service");
+        Log.info("Calling next Service ");
         orderedCallService.callServiceBySequence(orderSequence);
     }
 }
