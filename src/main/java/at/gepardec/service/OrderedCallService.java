@@ -37,6 +37,7 @@ public class OrderedCallService {
     private void chooseActionBySymbol(int actionSymbol) {
         ServiceAction serviceAction = ServiceAction.values()[actionSymbol];
         switch (serviceAction) {
+            // service1:
             case OK1:
                 validateForError(0);
                 break;
@@ -53,6 +54,7 @@ public class OrderedCallService {
                 makeDelay();
                 break;
 
+            // service2:
             case OK2:
                 validateForError(0);
                 break;
