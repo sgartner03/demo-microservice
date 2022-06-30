@@ -39,7 +39,9 @@ public class EntrypointResource {
     }
 
     public void processRequest(String orderSequence) {
+        Log.info("Sequence: " + orderSequence);
         OrderedCallService orderedCallService = new OrderedCallService(serviceUrls, idletime);
+        Log.info("after new OrderedCallService" + serviceUrls.get(0));
         switch (orderSequence) {
             case "":                                                                                // empty sequence => Stop CallService and
                 orderedCallService.sendStopNotifications();                            // send stop notifications to all other services
