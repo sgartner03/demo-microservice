@@ -16,20 +16,17 @@ public class CpuLoadService {
     Logger Log;
 
     public boolean loadCpu(int cpus, int sec) {
-
+        int useCpus = cpus;
         int maxCpus = Runtime.getRuntime().availableProcessors();
-
-        Log.info("Available cpu-cores: " + maxCpus);
-
         if (cpus > maxCpus) {
-            Log.info("Aborting loading of CPU because of insufficient core-availability: " + cpus + " <= " + maxCpus);
-            return false;
+            Log.infof("Parameter cpus=%d was bigger than max cpus, use maxCpus=%d", cpus, maxCpus);
+            useCpus = maxCpus;
         }
-        Log.info("Running load on " + cpus + " core(s) for " + sec + " second(s)");
+        Log.info("Running load on " + useCpus + " core(s) for " + sec + " second(s)");
 
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
-                cpus,
-                cpus,
+                useCpus,
+                useCpus,
                 1,
                 TimeUnit.SECONDS,
                 new LinkedBlockingDeque<>(1),
@@ -37,17 +34,17 @@ public class CpuLoadService {
                 new ThreadPoolExecutor.AbortPolicy()
         );
         try {
-            for (int i = 0; i < cpus; i++) {
+            for (int i = 0; i < useCpus; i++) {
                 threadPool.execute(this::strainCore);
             }
             threadPool.awaitTermination(sec + 1, TimeUnit.SECONDS);
             threadPool.shutdownNow();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.error(e);
         } finally {
             threadPool.shutdown();
-            return true;
         }
+        return true;
     }
 
     private void strainCore() {

@@ -27,18 +27,4 @@ class CpuLoadServiceTest {
         //then
         assertTrue(cpuLoadService.loadCpu(cpus, seconds));
     }
-
-    @Test
-    void loadCpuTestNegative() {
-        //given
-        int cpus = Runtime.getRuntime().availableProcessors() + 1;
-        int seconds = defaultTime;
-
-        //when
-
-        //then
-        assertFalse(cpuLoadService.loadCpu(cpus, seconds));
-    }
-
-
 }

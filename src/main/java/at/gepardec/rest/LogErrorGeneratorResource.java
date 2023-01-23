@@ -29,7 +29,6 @@ public class LogErrorGeneratorResource {
     @Path("/exception")
     @Produces(MediaType.APPLICATION_JSON)
     public Response throwException() {
-
         throw new RuntimeException();
     }
 }

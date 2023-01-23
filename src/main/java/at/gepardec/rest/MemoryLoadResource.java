@@ -25,21 +25,11 @@ public class MemoryLoadResource {
     @Path("/mem/{size}/{sec}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response loadMemoryRequest(int size, int sec) {
-        Log.infof("loadMemory(%d, %d)", size, sec);
-        Log.info("FreeMemory: " + Runtime.getRuntime().freeMemory());
-        Log.info("MaxMemory: " + Runtime.getRuntime().maxMemory());
-        Log.info("TotalMemory: " + Runtime.getRuntime().totalMemory());
-        long freeMemory = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory();
-        Log.info("Total free memory: " + freeMemory);
-        try {
-            if (!mcsService.loadMemory(size, sec)) {
-                return Response.status(500).entity("Out of memory...").build();
-            }
-        } catch (InterruptedException e) {
-            return Response.status(500).entity("Service was interrupted...").build();
+        if (!mcsService.loadMemory(size, sec)) {
+            return Response.status(500).entity("Out of memory...").build();
         }
+
         return Response.status(200).entity("Loaded memory successfully!").build();
     }
-
 
 }
