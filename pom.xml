@@ -18,6 +18,13 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <dependency-plugin.version>3.1.1</dependency-plugin.version>
         <quarkus.package.type>uber-jar</quarkus.package.type>
+
+        <!-- Sonar configuration -->
+        <sonar.projectKey>demo-microservice</sonar.projectKey>
+        <sonar.host.url>https://sonarqube.apps.steppe.gepaplexx.com</sonar.host.url>
+        <sonar.language>java</sonar.language>
+        <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
+        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
     </properties>
     <dependencyManagement>
         <dependencies>
