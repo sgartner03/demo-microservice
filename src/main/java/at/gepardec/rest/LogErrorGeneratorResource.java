@@ -31,6 +31,8 @@ public class LogErrorGeneratorResource {
     @Path("/exception")
     @Produces(MediaType.APPLICATION_JSON)
     public Response throwException() {
-        throw new RuntimeException();
+        Exception e = new RuntimeException("Simulating Exception");
+        LOGGER.info("Simulating Exception-Log-Message", e);
+        return Response.ok().entity(e.getMessage()).build();
     }
 }
