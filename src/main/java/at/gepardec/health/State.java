@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 @Singleton
 public class State {
 
-    private final String serviceName = "MainService";
+    private static final String serviceName = "MainService";
 
     boolean liveness = true;
 

@@ -1,7 +1,6 @@
 package at.gepardec.rest;
 
 import at.gepardec.service.CpuLoadService;
-import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,16 +15,16 @@ import javax.ws.rs.core.Response;
 public class CpuLoadResource {
 
     @Inject
-    Logger Log;
-
-    @Inject
     CpuLoadService clsService;
 
     @GET
     @Path("/cpu/{cpus}/{sec}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public Response loadCpuRequest(int cpus, int sec) {
         clsService.loadCpu(cpus, sec);
-        return Response.status(200).build();
+        return Response
+                .ok()
+                .entity("Cpu Load started")
+                .build();
     }
 }

@@ -1,9 +1,9 @@
 package at.gepardec.service;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -12,17 +12,16 @@ import java.util.concurrent.TimeUnit;
 @Dependent
 public class CpuLoadService {
 
-    @Inject
-    Logger Log;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CpuLoadService.class);
 
     public boolean loadCpu(int cpus, int sec) {
         int useCpus = cpus;
         int maxCpus = Runtime.getRuntime().availableProcessors();
         if (cpus > maxCpus) {
-            Log.infof("Parameter cpus=%d was bigger than max cpus, use maxCpus=%d", cpus, maxCpus);
+            LOGGER.info("Parameter cpus={} was bigger than max cpus, use maxCpus={}", cpus, maxCpus);
             useCpus = maxCpus;
         }
-        Log.info("Running load on " + useCpus + " core(s) for " + sec + " second(s)");
+        LOGGER.info("Running load on {} core(s) for {} second(s)", useCpus, sec);
 
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
                 useCpus,
@@ -40,7 +39,7 @@ public class CpuLoadService {
             threadPool.awaitTermination(sec + 1, TimeUnit.SECONDS);
             threadPool.shutdownNow();
         } catch (Exception e) {
-            Log.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             threadPool.shutdown();
         }

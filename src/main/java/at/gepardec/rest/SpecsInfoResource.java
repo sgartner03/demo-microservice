@@ -11,7 +11,7 @@ public class SpecsInfoResource {
 
     @GET
     @Path("/info")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public Response provideInfoOfResources() {
         int maxCpuCores = Runtime.getRuntime().availableProcessors();
         long maxMemory = Runtime.getRuntime().maxMemory(); // limit of allocatable memory
@@ -20,7 +20,7 @@ public class SpecsInfoResource {
         long availableMemory = (maxMemory - totalMemory + freeMemory)/(1000 * 1000); // freeMemory + not yet allocated memory
         return Response
                 .status(200)
-                .entity(String.format("Available Cores: %d\nAvailable Memory: %d", maxCpuCores, availableMemory))
+                .entity(String.format("Available Cores: %d%nAvailable Memory: %d", maxCpuCores, availableMemory))
                 .build();
     }
 

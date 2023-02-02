@@ -1,9 +1,9 @@
 package at.gepardec.rest;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,15 +14,17 @@ import javax.ws.rs.core.Response;
 @Path("/logging")
 public class LogErrorGeneratorResource {
 
-    @Inject
-    Logger Log;
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogErrorGeneratorResource.class);
 
     @GET
     @Path("/error")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public Response logErrorMessage() {
-        Log.error("Simulating Error-Log-Message");
-        return Response.ok("Logged error message").build();
+        LOGGER.error("Simulating Error-Log-Message");
+        return Response
+                .ok()
+                .entity("Logged Error Message")
+                .build();
     }
 
     @GET

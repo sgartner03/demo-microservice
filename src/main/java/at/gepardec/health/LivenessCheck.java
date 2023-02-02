@@ -3,7 +3,8 @@ package at.gepardec.health;
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.Liveness;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -12,15 +13,14 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class LivenessCheck implements HealthCheck {
 
-    @Inject
-    Logger Log;
+    private static final Logger LOGGER = LoggerFactory.getLogger(LivenessCheck.class);
 
     @Inject
     State state;
 
     @Override
     public HealthCheckResponse call() {
-        Log.info("LivenessCheck - ");
+        LOGGER.info("LivenessCheck - ");
         return HealthCheckResponse.named(state.getServiceName()).status(state.liveness).build();
     }
 }
