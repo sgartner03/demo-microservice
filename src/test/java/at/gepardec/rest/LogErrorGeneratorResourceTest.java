@@ -15,7 +15,7 @@ class LogErrorGeneratorResourceTest {
                 .when().get("/logging/error")
                 .then()
                 .statusCode(200)
-                .body(is("Logged error message"));
+                .body(is("Logged Error Message"));
     }
 
 }
