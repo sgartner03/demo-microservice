@@ -1,10 +1,9 @@
 {
   "build": {
     "type": {
-      "name": "maven",
+      "name": "go",
       "version": {
-        "java": "openjdk-11",
-        "maven": "3.8.3"
+        "go": "1.19"
       }
     }
   },
