@@ -1,0 +1,21 @@
+{
+  "build": {
+    "type": {
+      "name": "maven-java",
+      "java": "11",
+      "maven": "3.8.3"
+    }
+  },
+  "integrationtest": {
+    "active": "active",
+    "type": "newman"
+  },
+  "vulnerability-scan": {
+    "active": "true",
+    "type": "trivy",
+    "fail": {
+      "active": "true",
+      "severity": "CRITICAL"
+    }
+  }
+}
