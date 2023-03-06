@@ -7,11 +7,19 @@
     "type": {
       "name": "maven",
       "version": "3.8.3"
+    },
+    "image": {
+      "registry": "ghcr.io",
+      "repository": "demo-microservice",
+      "containerfile": "Containerfile"
     }
   },
   "integrationtest": {
     "active": "active",
-    "type": "newman"
+    "type": "newman",
+    "port": "8080",
+    "collection": "postman.json",
+    "collecitonPath": "postman"
   },
   "vulnerability-scan": {
     "active": "true",
