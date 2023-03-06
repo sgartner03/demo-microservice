@@ -1,10 +1,8 @@
 {
   "build": {
-    "type": {
+    "language": {
       "name": "go",
-      "version": {
-        "go": "1.19"
-      }
+      "version": "1.19.6"
     }
   },
   "integrationtest": {
