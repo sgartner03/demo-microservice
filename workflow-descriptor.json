@@ -2,11 +2,11 @@
   "build": {
     "language": {
       "name": "java",
-      "version": "openjdk-11"
-    },
-    "type": {
-      "name": "maven",
-      "version": "3.8.3"
+      "version": "openjdk-11",
+      "type": {
+        "name": "maven",
+        "version": "3.8.3"
+      }
     },
     "image": {
       "registry": "ghcr.io",
@@ -17,9 +17,11 @@
   "integrationtest": {
     "active": "active",
     "type": "newman",
-    "port": "8080",
-    "collection": "postman.json",
-    "collecitonPath": "postman"
+    "configuration": {
+      "port": "8080",
+      "collection": "postman.json",
+      "collecitonPath": "postman"
+    }
   },
   "vulnerability-scan": {
     "active": "true",
