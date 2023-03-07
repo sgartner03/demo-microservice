@@ -6,18 +6,26 @@
       "version": "openjdk-11",
       "type": {
         "name": "maven",
-        "version": "3.8.3"
+        "version": "3.8.3",
+        "configuration": {
+          "goals": "clean install",
+          "options": ""
+        }
       },
-      "static-code-analysis": {
-        "active": "true",
-        "type": "sonarqube"
+      "configuration": {
       }
     },
-    "image": {
-      "registry": "ghcr.io",
-      "repository": "demo-microservice",
-      "containerfile": "Containerfile"
+    "static-code-analysis": {
+      "active": "true",
+      "type": "sonarqube",
+      "configuration": {
+      }
     }
+  },
+  "image": {
+    "registry": "ghcr.io",
+    "repository": "demo-microservice",
+    "containerfile": "Containerfile"
   },
   "integrationtest": {
     "active": "active",
@@ -25,15 +33,19 @@
     "configuration": {
       "port": "8080",
       "collection": "postman.json",
-      "colleciton-path": "postman"
+      "collection-path": "postman",
+      "env-var": ""
     }
   },
   "vulnerability-scan": {
     "active": "true",
     "type": "trivy",
-    "fail": {
-      "active": "true",
-      "severity": "CRITICAL"
+    "configuration": {
+      "fail": {
+        "active": "true",
+        "severity": "CRITICAL"
+      },
+      "extra-args": ""
     }
   }
 }
