@@ -6,6 +6,10 @@
       "type": {
         "name": "maven",
         "version": "3.8.3"
+      },
+      "static-code-analysis": {
+        "active": "true",
+        "type": "sonarqube"
       }
     },
     "image": {
@@ -20,7 +24,7 @@
     "configuration": {
       "port": "8080",
       "collection": "postman.json",
-      "collecitonPath": "postman"
+      "colleciton-path": "postman"
     }
   },
   "vulnerability-scan": {
