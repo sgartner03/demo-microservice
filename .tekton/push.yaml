@@ -40,3 +40,13 @@ spec:
           workspaces:
             - name: input
               workspace: code
+  workspaces:
+    - name: code
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 300Mi
+          volumeMode: Filesystem
