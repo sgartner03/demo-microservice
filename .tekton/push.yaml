@@ -29,7 +29,14 @@ spec:
           runAfter:
             - fetch-source
           taskRef:
-            name: maven-build
+            resolver: cluster
+            params:
+              - name: kind
+                value: task
+              - name: name
+                value: maven-build
+              - name: namespace
+                value: gp-pipelines
           workspaces:
             - name: input
               workspace: code
