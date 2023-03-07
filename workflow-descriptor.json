@@ -3,16 +3,14 @@
     "workspace-size": "2Gi",
     "language": {
       "name": "java",
-      "version": "openjdk-11",
-      "type": {
-        "name": "maven",
-        "version": "3.8.3",
-        "configuration": {
-          "goals": "clean install",
-          "options": ""
-        }
-      },
+      "version": "openjdk-11"
+    },
+    "type": {
+      "name": "maven",
+      "version": "3.8.3",
       "configuration": {
+        "goals": "clean install",
+        "options": ""
       }
     },
     "static-code-analysis": {
@@ -20,22 +18,22 @@
       "type": "sonarqube",
       "configuration": {
       }
+    },
+    "integrationtest": {
+      "active": "active",
+      "type": "newman",
+      "configuration": {
+        "port": "8080",
+        "collection": "postman.json",
+        "collection-path": "postman",
+        "env-var": ""
+      }
     }
   },
   "image": {
     "registry": "ghcr.io",
     "repository": "demo-microservice",
     "containerfile": "Containerfile"
-  },
-  "integrationtest": {
-    "active": "active",
-    "type": "newman",
-    "configuration": {
-      "port": "8080",
-      "collection": "postman.json",
-      "collection-path": "postman",
-      "env-var": ""
-    }
   },
   "vulnerability-scan": {
     "active": "true",
