@@ -2,7 +2,6 @@
 apiVersion: "tekton.dev/v1beta1"
 kind: "PipelineRun"
 metadata:
-  namespace: gp-pipelines
   annotations:
     pipelinesascode.tekton.dev/task: "git-clone"
     pipelinesascode.tekton.dev/on-event: "[pull_request, push]"
@@ -29,7 +28,14 @@ spec:
           runAfter:
             - fetch-source
           taskRef:
-            name: maven-build
+            resolver: cluster
+            params:
+              - name: kind
+                value: task
+              - name: name
+                value: maven-build
+              - name: namespace
+                value: gp-pipelines
           workspaces:
             - name: input
               workspace: code
