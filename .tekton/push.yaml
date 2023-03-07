@@ -1,24 +1,34 @@
-apiVersion: tekton.dev/v1beta1
-kind: PipelineRun
+---
+apiVersion: "tekton.dev/v1beta1"
+kind: "PipelineRun"
 metadata:
-  name: git-demo-microservice
   annotations:
-    # The event we are targeting as seen from the webhook payload
-    # this can be an array too, i.e: [pull_request, push]
+    pipelinesascode.tekton.dev/task: "git-clone"
     pipelinesascode.tekton.dev/on-event: "[pull_request, push]"
-
-    # The branch or tag we are targeting (ie: main, refs/tags/*)
     pipelinesascode.tekton.dev/on-target-branch: "main"
-
-    # How many runs we want to keep attached to this event
     pipelinesascode.tekton.dev/max-keep-runs: "5"
+  name: "git-demo-microservice"
 spec:
   pipelineSpec:
-    tasks:
-      - name: hello-world
-        taskSpec:
-          steps:
-            - name: hello-world
-              image: registry.access.redhat.com/ubi9/ubi-micro
-              script: |
-                echo "Hello World!"
+      workspaces:
+        - name: code
+      tasks:
+        - name: fetch-source
+          taskRef:
+            name: git-clone
+          workspaces:
+            - name: output
+              workspace: code
+          params:
+            - name: url
+              value: https://github.com/sgartner03/demo-microservice
+            - name: subdirectory
+              value: /app
+        - name: maven-build
+          runAfter:
+            - fetch-source
+          taskRef:
+            name: maven-build
+          workspaces:
+            - name: input
+              workspace: code
