@@ -1,6 +1,6 @@
 {
   "build": {
-    "workspace-size": "2Gi",
+    "workspace-size": "2G",
     "language": {
       "name": "java",
       "version": "openjdk-11"
