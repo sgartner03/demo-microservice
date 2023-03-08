@@ -22,8 +22,6 @@ spec:
           params:
             - name: url
               value: https://github.com/sgartner03/demo-microservice
-            - name: subdirectory
-              value: /app
         - name: maven-build
           runAfter:
             - fetch-source
@@ -39,6 +37,11 @@ spec:
           workspaces:
             - name: input
               workspace: code
+          params:
+            - name: gitrepo
+              value:
+                name: demo-microservice
+                branch: main
   workspaces:
     - name: code
       volumeClaimTemplate:
@@ -49,3 +52,6 @@ spec:
             requests:
               storage: 300Mi
           volumeMode: Filesystem
+    - name: cache
+      persistentVolumeClaim:
+        claimName: maven-cache
