@@ -38,7 +38,7 @@ spec:
             - name: input
               workspace: code
             - name: cache
-              workspace: cache
+              workspace: maven-cache
           params:
             - name: repo
               value: demo-microservice
@@ -54,7 +54,6 @@ spec:
             requests:
               storage: 300Mi
           volumeMode: Filesystem
-    - name: cache
+    - name: maven-cache
       persistentVolumeClaim:
         claimName: maven-cache
-
