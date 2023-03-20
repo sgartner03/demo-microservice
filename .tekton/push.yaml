@@ -9,6 +9,12 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "5"
   name: "git-demo-microservice"
 spec:
+  taskRunSpecs:
+  - pipelineTaskName: fetch-source # ...your git-clone PipelineTask name...
+    taskPodTemplate:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
   pipelineSpec:
       workspaces:
         - name: code
@@ -22,10 +28,6 @@ spec:
           params:
             - name: url
               value: https://github.com/sgartner03/demo-microservice
-          podTemplate:
-            securityContext:
-              runAsNonRoot: true
-              runAsUser: 65532
 
         - name: maven-build
           runAfter:
