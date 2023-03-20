@@ -52,7 +52,7 @@ spec:
             - name: branch
               value: main
             - name: userHome
-              value: /home/nonroot
+              value: /home/git
   workspaces:
     - name: code
       volumeClaimTemplate:
