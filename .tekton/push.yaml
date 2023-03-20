@@ -23,8 +23,10 @@ spec:
             - name: url
               value: https://github.com/sgartner03/demo-microservice
           podTemplate:
-           securityContext:
-             fsGroup: 65532
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 65532
+
         - name: maven-build
           runAfter:
             - fetch-source
