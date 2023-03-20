@@ -51,6 +51,8 @@ spec:
               value: demo-microservice
             - name: branch
               value: main
+            - name: userHome
+              value: /home/nonroot
   workspaces:
     - name: code
       volumeClaimTemplate:
