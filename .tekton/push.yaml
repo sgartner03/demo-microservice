@@ -15,6 +15,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 65532
+        fsGroup: 65532
   pipelineSpec:
       workspaces:
         - name: code
