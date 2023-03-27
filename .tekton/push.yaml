@@ -16,6 +16,12 @@ spec:
         runAsNonRoot: true
         runAsUser: 65532
         fsGroup: 65532
+  - pipelineTaskName: maven-build # ...your git-clone PipelineTask name...
+    taskPodTemplate:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        fsGroup: 65532
   pipelineSpec:
       workspaces:
         - name: code
