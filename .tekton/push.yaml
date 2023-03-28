@@ -47,7 +47,7 @@ spec:
               - name: name
                 value: maven-build
               - name: namespace
-                value: gp-pipelines
+                value: tekton-demo-microservice-cicd
           workspaces:
             - name: input
               workspace: code
