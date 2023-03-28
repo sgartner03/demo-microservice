@@ -73,3 +73,6 @@ spec:
     - name: maven-cache
       persistentVolumeClaim:
         claimName: maven-cache
+    - name: sonar-cache
+      persistentVolumeClaim:
+        claimName: soanr-cache
