@@ -53,6 +53,8 @@ spec:
               workspace: code
             - name: cache
               workspace: maven-cache
+            - name: sonar-cache
+              workspace: sonar-cache
           params:
             - name: repo
               value: demo-microservice
@@ -75,4 +77,4 @@ spec:
         claimName: maven-cache
     - name: sonar-cache
       persistentVolumeClaim:
-        claimName: soanr-cache
+        claimName: sonar-cache
