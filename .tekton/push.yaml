@@ -34,7 +34,7 @@ spec:
               workspace: code
           params:
             - name: url
-              value: https://github.com/sgartner03/demo-microservice
+              value: https://github.com/tomeindl/demo-microservice
 
         - name: maven-build
           runAfter:
