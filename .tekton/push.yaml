@@ -77,6 +77,9 @@ spec:
                 value: buildah-as-user
               - name: namespace
                 value: tekton-demo-microservice-cicd
+          workspaces:
+            - name: code
+              workspace: code
   workspaces:
     - name: code
       volumeClaimTemplate:
