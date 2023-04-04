@@ -62,6 +62,19 @@ spec:
               value: main
             - name: userHome
               value: /home/git
+        - name: image-build
+          runAfter:
+            - maven-build
+          taskRef:
+            resolver: cluster
+            params:
+              - name: kind
+                value: task
+              - name: name
+                value: buildah-as-user
+              - name: namespace
+                value: tekton-demo-microservice-cicd
+          serviceAccountName: pipelines-sa-userid-1000
   workspaces:
     - name: code
       volumeClaimTemplate:
