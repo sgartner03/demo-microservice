@@ -22,7 +22,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 65532
         fsGroup: 65532
-  - pipelineTaskName: maven-build # ...your git-clone PipelineTask name...
+  - pipelineTaskName: image-build # ...your git-clone PipelineTask name...
     taskServiceAccountName: pipelines-sa-userid-1000
 
   pipelineSpec:
