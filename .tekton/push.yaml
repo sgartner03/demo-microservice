@@ -37,7 +37,7 @@ spec:
               workspace: code
           params:
             - name: url
-              value: https://github.com/tomeindl/demo-microservice
+              value: {{repo_url}}
 
         - name: maven-build
           runAfter:
@@ -60,7 +60,7 @@ spec:
               workspace: sonar-cache
           params:
             - name: repo
-              value: demo-microservice
+              value: {{repo_name}}
             - name: branch
               value: main
             - name: userHome
