@@ -1,4 +1,5 @@
-FROM openjdk:11.0-jre-slim
+#FROM openjdk:11.0-jre-slim
+FROM docker.io/library/openjdk:11.0-jre-slim
 
 WORKDIR /work/
 RUN chown :root /work \
