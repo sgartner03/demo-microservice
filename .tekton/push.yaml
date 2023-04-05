@@ -82,6 +82,25 @@ spec:
               workspace: code
             - name: ghcr-pat
               workspace: ghcr-pat
+        - name: image-scan
+          runAfter:
+            - image-build
+          taskRef:
+            resolver: cluster
+            params:
+              - name: kind
+                value: task
+              - name: name
+                value: scan-image-trivy
+              - name: namespace
+                value: tekton-demo-microservice-cicd
+          workspaces:
+            - name: workspace
+              workspace: code
+            - name: ghcr-pat
+              workspace: ghcr-pat
+            - name: ghcr-pat
+              workspace: trivy-cache
 
   workspaces:
     - name: code
@@ -102,3 +121,12 @@ spec:
     - name: ghcr-pat
       secret:
         secretName: ghcr-pat
+    - name: trivy-cache
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5Gi
+          volumeMode: Filesystem
