@@ -80,6 +80,9 @@ spec:
           workspaces:
             - name: code
               workspace: code
+            - name: ghcr-pat
+              workspace: ghcr-pat
+
   workspaces:
     - name: code
       volumeClaimTemplate:
@@ -96,3 +99,6 @@ spec:
     - name: sonar-cache
       persistentVolumeClaim:
         claimName: sonar-cache
+    - name: ghcr-pat
+      secret:
+        secretName: ghcr-pat
