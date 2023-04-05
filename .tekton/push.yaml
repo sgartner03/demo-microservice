@@ -99,7 +99,7 @@ spec:
               workspace: code
             - name: ghcr-pat
               workspace: ghcr-pat
-            - name: ghcr-pat
+            - name: cache
               workspace: trivy-cache
 
   workspaces:
