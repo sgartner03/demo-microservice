@@ -42,6 +42,8 @@ spec:
       value: {{source_branch}}
     - name: maven-version
       value: 0.1.5
+    - name: skip-image-scan
+      value: "true"
   workspaces:
     - name: code
       volumeClaimTemplate:
