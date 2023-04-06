@@ -62,9 +62,9 @@ spec:
             - name: repo
               value: {{repo_name}}
             - name: branch
-              value: main
-            - name: userHome
-              value: /home/git
+              value: {{source_branch}}
+            - name: maven-version
+              value: 0.1.5
         - name: image-build
           runAfter:
             - maven-build
