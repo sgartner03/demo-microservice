@@ -16,19 +16,20 @@ spec:
         runAsNonRoot: true
         runAsUser: 65532
         fsGroup: 65532
-  - pipelineTaskName: maven-build # ...your git-clone PipelineTask name...
+  - pipelineTaskName: maven-build
     taskPodTemplate:
       securityContext:
         runAsNonRoot: true
         runAsUser: 65532
         fsGroup: 65532
-  - pipelineTaskName: image-build # ...your git-clone PipelineTask name...
+  - pipelineTaskName: image-build
     taskServiceAccountName: pipelines-sa-userid-1000
 
   pipelineSpec:
       workspaces:
         - name: code
       tasks:
+        #Tekton Hub task, needs to be referenced in the annotations
         - name: fetch-source
           taskRef:
             name: git-clone
@@ -38,7 +39,7 @@ spec:
           params:
             - name: url
               value: {{repo_url}}
-
+        #Task on the cluster, needs the cluster resolver
         - name: maven-build
           runAfter:
             - fetch-source
@@ -65,6 +66,7 @@ spec:
               value: {{source_branch}}
             - name: maven-version
               value: 0.1.5
+        #Task on the cluster, needs the cluster resolver
         - name: image-build
           runAfter:
             - maven-build
@@ -103,6 +105,7 @@ spec:
               workspace: trivy-cache
 
   workspaces:
+    # the working directory where code is checked out into
     - name: code
       volumeClaimTemplate:
         spec:
@@ -112,15 +115,18 @@ spec:
             requests:
               storage: 300Mi
           volumeMode: Filesystem
+    # caches, built with helm on cluster, just referenced
     - name: maven-cache
       persistentVolumeClaim:
         claimName: maven-cache
     - name: sonar-cache
       persistentVolumeClaim:
         claimName: sonar-cache
+    # secret mounted into pod
     - name: ghcr-pat
       secret:
         secretName: ghcr-pat
+    # cache for trivy image scan
     - name: trivy-cache
       volumeClaimTemplate:
         spec:
