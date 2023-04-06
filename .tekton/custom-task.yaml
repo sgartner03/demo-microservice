@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: maven-build
+  name: custom-task
 spec:
   steps:
     - name: build
