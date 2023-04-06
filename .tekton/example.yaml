@@ -44,6 +44,8 @@ spec:
       value: 0.1.5
     - name: skip-image-scan
       value: "true"
+    - name: skip-image-build
+      value: "true"
   workspaces:
     - name: code
       volumeClaimTemplate:
