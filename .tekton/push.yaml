@@ -43,7 +43,14 @@ spec:
           runAfter:
             - fetch-source
           taskRef:
-            - name: maven-build
+            resolver: cluster
+            params:
+              - name: kind
+                value: task
+              - name: name
+                value: maven-build
+              - name: namespace
+                value: tekton-demo-microservice-cicd
           workspaces:
             - name: input
               workspace: code
